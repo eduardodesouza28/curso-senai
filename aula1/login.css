@@ -9,7 +9,10 @@
     
 }
 body{
-    background-color: black;
+    /* background-color: black; */
+    background-image: url("OI.jfif") ;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 #butn{
     background-color: rgb(150, 150, 150);
