@@ -17,10 +17,14 @@ function registrarLogin() {
     localStorage.setItem("senha", senha)
     localStorage.setItem("nome", nome)
 
-    window.location.href = "pgInicio.html"
+    window.location.href = "index.html"
+}
+function sairConta(){
+    if (confirm("tem certeza") == true)
+    window.location.href = "index.html"
 }
 function login() {
-    let email = document.getElementById("nome2").value
+    let email = document.getElementById("email2").value
     let senha = document.getElementById("senha2").value
     let nome = document.getElementById("nome2").value
     let emailS = localStorage.getItem("email")
@@ -28,6 +32,7 @@ function login() {
     let nomeS = localStorage.getItem("nome")
 
     if (email == emailS && senha == senhaS && nome == nomeS) {
+        alert("login efetuado")
         window.location.href = "pgInicio.html"
     } else {
         alert("login fracassado, tente novamente")
@@ -62,8 +67,15 @@ function limparCarrinho() {
 function comprar() {
     if (total != 0) {
         alert("seu pedido ficou R$" + total)
-        total = 0
-        document.getElementById("view").innerHTML = "Carrinho"
+        let sena = prompt("senha:")
+
+        while (sena == "") {
+            sena = prompt("digite a senha:")
+        }
+        if (sena != "") {
+            total = 0
+            document.getElementById("view").innerHTML = "Carrinho"
+        }
     }
 }
 document.querySelectorAll('button[id]').forEach(function (button) {

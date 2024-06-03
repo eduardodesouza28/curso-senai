@@ -9,6 +9,7 @@ h2 {
 .wallpaperRed {
     background-color: rgb(237, 41, 7);
     padding: 0px;
+    border-radius: 10px;
 }
 
 .titulo {
@@ -68,7 +69,7 @@ label {
     text-align: center;
     flex-direction: column;
 }
-.teste{
+.carrinho{
     position: absolute;
     right: 175px;
 }
@@ -80,7 +81,15 @@ img {
 .linhaGrossa {
     border: 1px solid black;
 }
-
+.sairBotao{
+    position: absolute;
+    left: 175px;
+}
+.sairBotaoin{
+    position: absolute;
+    left: 10px;
+    bottom: 25px;
+}
 .pb-0 {
     padding-bottom: 0px !important;
 }
