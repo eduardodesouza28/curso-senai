@@ -1,5 +1,4 @@
 
-let total = 0
 num = 1
 document.getElementById("preçoS").innerHTML = parseInt(Math.floor(Math.random() * (220 - 75) + 75))
 document.getElementById("preçoS1").innerHTML = parseInt(Math.floor(Math.random() * (220 - 75) + 75))
@@ -19,9 +18,9 @@ function registrarLogin() {
 
     window.location.href = "index.html"
 }
-function sairConta(){
+function sairConta() {
     if (confirm("tem certeza") == true)
-    window.location.href = "index.html"
+        window.location.href = "index.html"
 }
 function login() {
     let email = document.getElementById("email2").value
@@ -31,7 +30,7 @@ function login() {
     let senhaS = localStorage.getItem("senha")
     let nomeS = localStorage.getItem("nome")
 
-    if (email == emailS && senha == senhaS && nome == nomeS) {
+    if (email == emailS && senha == senhaS && nome == nomeS.toLocaleLowerCase()) {
         alert("login efetuado")
         window.location.href = "pgInicio.html"
     } else {
@@ -62,28 +61,36 @@ function voltar() {
 }
 function limparCarrinho() {
     total = 0
-    document.getElementById("view").innerHTML = "Carrinho"
-}
-function comprar() {
-    if (total != 0) {
-        alert("seu pedido ficou R$" + total)
-        let sena = prompt("senha:")
+    localStorage.setItem("carrinho", total)
+    document.getElementById("view").innerHTML = "R$" + total
 
-        while (sena == "") {
-            sena = prompt("digite a senha:")
-        }
-        if (sena != "") {
-            total = 0
-            document.getElementById("view").innerHTML = "Carrinho"
-        }
-    }
 }
+
+let total = parseInt(localStorage.getItem("carrinho") || 0)
+document.getElementById("view").innerHTML = "R$" + total
+
 document.querySelectorAll('button[id]').forEach(function (button) {
     button.addEventListener('click', function (event) {
         let pid = event.currentTarget.querySelector('p').textContent
         let pnum = Number(pid) * num
         total += pnum
+        localStorage.setItem("carrinho", total)
         document.getElementById("view").innerHTML = "R$" + total
-
     })
 })
+function comprar() {
+    if (total != 0) {
+        alert("Seu pedido ficou R$" + total)
+        let senha = prompt("Digite a senha:")
+
+        while (senha.length != 4) {
+            senha = prompt("Digite a senha:")
+        }
+
+        if (senha !== "") {
+            total = 0
+            localStorage.setItem("carrinho", total)
+            document.getElementById("view").innerHTML =  "R$" + total
+        }
+    }
+}
